@@ -1,0 +1,40 @@
+<!-- Ingreso de usuarios a su pagina principal o click a boton de registro -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Npimage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'color.css')}}">
+    
+</head>
+<body>
+    <div class="login-form"> 
+    <h1 >NPIMAGE</h1>
+    <form action="/usuario" method="post">
+        <p>
+        <h2>Log in</h2> 
+        </p>
+        <P>
+        <label for="">Username</label>
+        </P>
+        <input type="text" required minlength="4" maxlength="20">
+        <P>
+        <label for="">Password</label>
+        </P>
+        <input type="password" required minlength="8" maxlength="30">
+        <P>
+        <input type="submit" value="Sign in">
+        </P>
+        <a href="#">Forgot password</a>
+    </form>
+    </div>
+    <form action="/usuario/registro" method="get" >
+        <P class="form-reg">
+        <input type="submit" value="Register">
+        </P>
+    </form>
+
+</body>
+</html>
