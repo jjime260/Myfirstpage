@@ -12,25 +12,25 @@
 <body>
     <div class="login-form"> 
     <h1 >NPIMAGE</h1>
-    <form action="/usuario" method="post">
+    <form action="/login" method="post">
         <p>
         <h2>Log in</h2> 
         </p>
         <P>
         <label for="">Username</label>
         </P>
-        <input type="text" required minlength="4" maxlength="20">
+        <input type="text" name="txtUsername" required minlength="4" maxlength="20">
         <P>
         <label for="">Password</label>
         </P>
-        <input type="password" required minlength="8" maxlength="30">
+        <input type="password" name="txtPassword" required minlength="8" maxlength="30">
         <P>
         <input type="submit" value="Sign in">
         </P>
         <a href="#">Forgot password</a>
     </form>
     </div>
-    <form action="/usuario/registro" method="get" >
+    <form action="/usuario/registro" method="post" >
         <P class="form-reg">
         <input type="submit" value="Register">
         </P>
