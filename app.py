@@ -39,23 +39,21 @@ def login():
         row =cur.fetchone()
         if row:
             session["usuario"] = row["username"]
-            return redirect("usuario")
+            return render_template ("usuario.html")
 
         else:
             error = "Usuario o password no existe"
 
     return render_template("index.html", error=error)
 
-@app.route("/usuario")
-def usuario():
-    if "usuario" in session:
-        return render_template("usuario.html")
+
 
 @app.route("/usuario", methods=["post"])
 def register():
     #Captura los datos del usuario
     nombre= request.form["txtNombre"]
     username=request.form["txtUsername"]
+    email=request.form["txtEmail"]
     password=request.form["txtPassword"]
     confirm= request.form["txtConfirm"]
     #Validacion de contraseña
@@ -72,7 +70,7 @@ def register():
         if siExiste(username):
             return "Username already in use"
         #Crea el nuevo usuario
-        cur.execute("INSERT INTO registro2022 (nombre,username,password) VALUES (?,?,?)",[nombre,username,pwd])
+        cur.execute("INSERT INTO registro2022 (nombre,username,email,password) VALUES (?,?,?,?)",[nombre,username,email,pwd])
         con.commit()
         return render_template("usuario.html")
 
@@ -93,6 +91,14 @@ def siExiste(username):
 def logout():
     session.pop("usuario",None)
     return redirect("/")
+
+@app.route("/forgotpass")
+def password():
+    return render_template("forgotpass.html")
+
+@app.route("/terms")
+def terminos():
+    return render_template("terms.html")
 
 
 app.run(debug=True)

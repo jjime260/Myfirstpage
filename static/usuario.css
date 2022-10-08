@@ -24,6 +24,8 @@
     position: fixed;
     top: 20px;
     right: 30px;
+    text-decoration: none;
+    color: black;
     
 }
 
@@ -39,7 +41,7 @@
     height: 100%;
     position: fixed;
     top: 70px;
-    background-color: #064d35;
+    background-color: #064d63;
     left: -100%;
     transition: 0.7s;
 }
@@ -76,7 +78,7 @@
 }
 
 .hide-btn{
-    left: 0;
+    opacity: 0;
 }
 
 #chk:checked ~ .sidebar{
