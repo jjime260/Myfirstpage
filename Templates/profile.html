@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'usuario.css')}}">
 </head>
 <body>
-    <form action="" method="">
+    <form action="" method="get" enctype="multipart/form-data">
     <div class="header">
         <h1>NPIMAGE</h1>
     </div>
@@ -19,13 +19,15 @@
 
     <div class="content">
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem eos in eveniet. Mollitia recusandae excepturi necessitatibus ullam voluptas iure alias quibusdam aut commodi maxime? Eum fuga velit voluptas id cupiditate.
+            <label for="">Foto de perfil</label>
+            <input type="file" name="txtAvatar">
+
         </p>
     </div>
     <div class="sidebar">
         <ul>
             <li><a href="/home"><span>Home</span></a></li>
-            <li><a href="/usuario/myprofile"><span>My profile</span></a></li>
+            <li><a href="/myprofile"><span>My profile</span></a></li>
             <li><a href="/search"><span>Search</span></a></li>
             <li><a href="/setting"><span>Settings</span></a></li>
             <li><a href="/about"><span>About</span></a></li>

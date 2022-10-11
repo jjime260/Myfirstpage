@@ -3,9 +3,11 @@
 from flask import Flask, render_template, request, session, redirect
 import sqlite3
 import hashlib
+from werkzeug.utils import secure_filename
 import os
 
 app=Flask(__name__)
+FOLDER_IMAGES = 'static/img/'
 app.secret_key=os.urandom(15)
 
 #Api general
@@ -31,11 +33,11 @@ def login():
     clave= hashlib.sha256(password.encode())
     pwd = clave.hexdigest()
 
-    with sqlite3.connect("page.db") as con:
+    with sqlite3.connect("DBJ.db") as con:
         con.row_factory = sqlite3.Row
         cur = con.cursor()
 
-        cur.execute("SELECT * FROM registro2022 WHERE username = ? AND password = ?",[username, pwd])
+        cur.execute("SELECT * FROM asd WHERE username = ? AND password = ?",[username, pwd])
         row =cur.fetchone()
         if row:
             session["usuario"] = row["username"]
@@ -64,13 +66,16 @@ def register():
     #Convierte el password a hexadecimal tipo string
     pwd = clave.hexdigest()
     #Se conecta a la BD
-    with sqlite3.connect("page.db") as con:
+    with sqlite3.connect("DBJ.db") as con:
         cur = con.cursor()
         #Consultar si ya existe el usuario
         if siExiste(username):
             return "Username already in use"
         #Crea el nuevo usuario
-        cur.execute("INSERT INTO registro2022 (nombre,username,email,password) VALUES (?,?,?,?)",[nombre,username,email,pwd])
+        #cur.execute("INSERT INTO registro2022 (nombre,username,email,password) VALUES (?,?,?,?)",[nombre,username,email,pwd])
+        #sdfsfd
+        cur.execute("INSERT INTO asd (nombre,username,email,password)VALUES (?,?,?,?)",[nombre,username,email,pwd])
+        #sdsdgf
         con.commit()
         return render_template("usuario.html")
 
@@ -99,6 +104,25 @@ def password():
 @app.route("/terms")
 def terminos():
     return render_template("terms.html")
+
+@app.route("/home", methods=["get"])
+def main():
+    return render_template("usuario.html")
+
+# @app.route("/usuario/myprofile", methods=["get"])
+# def myprofile():
+    # foto = request.files["txtAvatar"]
+    # nom_archivo = foto.filename
+    # ruta = FOLDER_IMAGES + secure_filename(nom_archivo)
+    # foto.save(ruta)
+    
+
+    # #Se conecta a la BD
+    # with sqlite3.connect("DBJ.db") as con:
+    #     cur = con.cursor()
+    #     cur.execute("INSERT INTO registro2022 (avatar) VALUES (?)," [nom_archivo])
+    #     con.commit()
+    #     return render_template("profile.html")
 
 
 app.run(debug=True)
