@@ -125,6 +125,6 @@ def myprofile():
     return render_template("profile.html")
 
 
-app.run(debug=True)
+# app.run(debug=True)
 
 
