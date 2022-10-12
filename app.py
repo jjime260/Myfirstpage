@@ -83,10 +83,10 @@ def register():
 
 def siExiste(username):
     #se conecta a la BD
-    with sqlite3.connect("page.db") as con:
+    with sqlite3.connect("DBJ.db") as con:
         cur = con.cursor()
         #consultar si ya existe el usuario
-        cur.execute("SELECT username from registro2022 WHERE username=?",[username])
+        cur.execute("SELECT username from asd WHERE username=?",[username])
         if cur.fetchone():
             return True
 
@@ -109,8 +109,8 @@ def terminos():
 def main():
     return render_template("usuario.html")
 
-# @app.route("/usuario/myprofile", methods=["get"])
-# def myprofile():
+@app.route("/usuario/myprofile")
+def myprofile():
     # foto = request.files["txtAvatar"]
     # nom_archivo = foto.filename
     # ruta = FOLDER_IMAGES + secure_filename(nom_archivo)
@@ -122,7 +122,7 @@ def main():
     #     cur = con.cursor()
     #     cur.execute("INSERT INTO registro2022 (avatar) VALUES (?)," [nom_archivo])
     #     con.commit()
-    #     return render_template("profile.html")
+    return render_template("profile.html")
 
 
 app.run(debug=True)
