@@ -111,20 +111,8 @@ def main():
 
 @app.route("/usuario/myprofile")
 def myprofile():
-    # foto = request.files["txtAvatar"]
-    # nom_archivo = foto.filename
-    # ruta = FOLDER_IMAGES + secure_filename(nom_archivo)
-    # foto.save(ruta)
-    
-
-    # #Se conecta a la BD
-    # with sqlite3.connect("DBJ.db") as con:
-    #     cur = con.cursor()
-    #     cur.execute("INSERT INTO registro2022 (avatar) VALUES (?)," [nom_archivo])
-    #     con.commit()
     return render_template("profile.html")
 
 
-# app.run(debug=True)
 
 
